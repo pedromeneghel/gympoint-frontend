@@ -23,7 +23,7 @@ export default function RouterWrapper({
     return <Redirect to="/dashboard" />;
   }
 
-  const Layout = DefaultLayout; // signed ? DefaultLayout : AuthLayout;
+  const Layout = signed ? DefaultLayout : AuthLayout;
   return (
     <Route
       {...rest}

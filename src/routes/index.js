@@ -22,19 +22,19 @@ export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={SignIn} />
-      <Route path="/enrollments" exact component={EnrollmentsList} />
-      <Route path="/enrollments/add" component={EnrollmentsAdd} />
-      <Route path="/enrollments/edit" component={EnrollmentsEdit} />
+      <Route path="/enrollments" exact component={EnrollmentsList} isPrivate />
+      <Route path="/enrollments/add" component={EnrollmentsAdd} isPrivate />
+      <Route path="/enrollments/edit" component={EnrollmentsEdit} isPrivate />
 
-      <Route path="/help-orders" component={HelpOrdersList} />
+      <Route path="/help-orders" component={HelpOrdersList} isPrivate />
 
-      <Route path="/plans" exact component={PlansList} />
-      <Route path="/plans/add" component={PlansAdd} />
-      <Route path="/plans/edit" component={PlansEdit} />
+      <Route path="/plans" exact component={PlansList} isPrivate />
+      <Route path="/plans/add" component={PlansAdd} isPrivate />
+      <Route path="/plans/edit" component={PlansEdit} isPrivate />
 
-      <Route path="/students" exact component={StudentsList} />
-      <Route path="/students/add" component={StudentsAdd} />
-      <Route path="/students/edit" component={StudentsEdit} />
+      <Route path="/students" exact component={StudentsList} isPrivate />
+      <Route path="/students/add" component={StudentsAdd} isPrivate />
+      <Route path="/students/edit" component={StudentsEdit} isPrivate />
 
       <Route path="/" component={SignIn} />
     </Switch>
