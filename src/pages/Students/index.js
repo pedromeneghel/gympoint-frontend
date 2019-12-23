@@ -79,7 +79,7 @@ export default function StudentsList() {
               <td>example@intellecti.com.br</td>
               <td>20</td>
               <td>
-                <Link to="/" className="edit">
+                <Link to="/students/edit" className="edit">
                   editar
                 </Link>
                 <Link to="/" className="delete">
@@ -92,7 +92,7 @@ export default function StudentsList() {
               <td>example@intellecti.com.br</td>
               <td>20</td>
               <td>
-                <Link to="/" className="edit">
+                <Link to="/students/edit" className="edit">
                   editar
                 </Link>
                 <Link to="/" className="delete">
@@ -105,7 +105,7 @@ export default function StudentsList() {
               <td>example@intellecti.com.br</td>
               <td>20</td>
               <td>
-                <Link to="/" className="edit">
+                <Link to="/students/edit" className="edit">
                   editar
                 </Link>
                 <Link to="/" className="delete">
