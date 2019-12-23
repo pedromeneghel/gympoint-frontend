@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MdAdd } from 'react-icons/md';
+import { MdAdd, MdCheckCircle } from 'react-icons/md';
 
-export default function PlansList() {
+export default function EnrollmentsList() {
   return (
     <>
       <section className="title">
-        <h1>Gerenciando Planos</h1>
+        <h1>Gerenciando Matrículas</h1>
         <button type="button" className="secondary">
           <MdAdd size={24} />
           Cadastrar
@@ -16,17 +16,23 @@ export default function PlansList() {
         <table>
           <thead>
             <tr>
-              <th>Título</th>
-              <th>Duração</th>
-              <th>Valor p/ Mês</th>
+              <th>Aluno</th>
+              <th>Plano</th>
+              <th>Início</th>
+              <th>Término</th>
+              <th>Ativa</th>
               <th>#</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td>Chan Ji-Hun</td>
               <td>Start</td>
-              <td>1 mês</td>
-              <td>R$129,00</td>
+              <td>30 de Abril de 2019</td>
+              <td>30 de Maio de 2019</td>
+              <td>
+                <MdCheckCircle size={24} color="#42CB59" />
+              </td>
               <td>
                 <Link to="/" className="edit">
                   editar
@@ -37,22 +43,13 @@ export default function PlansList() {
               </td>
             </tr>
             <tr>
-              <td>Gold</td>
-              <td>2 meses</td>
-              <td>R$109,00</td>
+              <td>Chan Ji-Hun</td>
+              <td>Start</td>
+              <td>30 de Abril de 2019</td>
+              <td>30 de Maio de 2019</td>
               <td>
-                <Link to="/" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
+                <MdCheckCircle size={24} active="#ddd" />
               </td>
-            </tr>
-            <tr>
-              <td>Diamond</td>
-              <td>3 meses</td>
-              <td>R$89,00</td>
               <td>
                 <Link to="/" className="edit">
                   editar

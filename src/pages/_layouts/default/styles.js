@@ -23,6 +23,30 @@ export const Container = styled.div`
       font-size: 24px;
       color: #444;
     }
+
+    .actionBar {
+      display: flex;
+      flex-direction: row;
+
+      .search {
+        margin-left: 16px;
+
+        input {
+          color: #999;
+          padding-left: 45px;
+        }
+
+        i {
+          position: relative;
+          svg {
+            color: #999;
+            position: absolute;
+            left: 16px;
+            top: -4px;
+          }
+        }
+      }
+    }
   }
 
   section.content {
@@ -60,6 +84,10 @@ export const Container = styled.div`
           display: flex;
           align-items: center;
           justify-content: space-around;
+        }
+
+        svg {
+          color: ${props => (props.active === 'false' ? '#42CB59' : '#ddd')};
         }
 
         .edit {
