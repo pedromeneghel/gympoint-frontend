@@ -43,7 +43,7 @@ export default function PlansEdit() {
                   type="number"
                   id="totalPrice"
                   name="totalPrice"
-                  readOnly
+                  disabled
                 />
               </div>
             </div>

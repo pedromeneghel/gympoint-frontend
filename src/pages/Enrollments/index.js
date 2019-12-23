@@ -7,10 +7,10 @@ export default function EnrollmentsList() {
     <>
       <section className="title">
         <h1>Gerenciando Matrículas</h1>
-        <button type="button" className="secondary">
+        <Link to="/enrollments/add" className="secondary">
           <MdAdd size={24} />
           Cadastrar
-        </button>
+        </Link>
       </section>
       <section className="content">
         <table>
@@ -34,7 +34,7 @@ export default function EnrollmentsList() {
                 <MdCheckCircle size={24} color="#42CB59" />
               </td>
               <td>
-                <Link to="/" className="edit">
+                <Link to="/enrollments/edit" className="edit">
                   editar
                 </Link>
                 <Link to="/" className="delete">
@@ -51,7 +51,7 @@ export default function EnrollmentsList() {
                 <MdCheckCircle size={24} active="#ddd" />
               </td>
               <td>
-                <Link to="/" className="edit">
+                <Link to="/enrollments/edit" className="edit">
                   editar
                 </Link>
                 <Link to="/" className="delete">

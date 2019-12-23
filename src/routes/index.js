@@ -5,6 +5,8 @@ import Route from './Routes';
 import SignIn from '../pages/SignIn';
 
 import EnrollmentsList from '../pages/Enrollments';
+import EnrollmentsAdd from '../pages/Enrollments/Add';
+import EnrollmentsEdit from '../pages/Enrollments/Edit';
 
 import HelpOrdersList from '../pages/HelpOrders';
 
@@ -20,7 +22,10 @@ export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={SignIn} />
-      <Route path="/enrollments" component={EnrollmentsList} />
+      <Route path="/enrollments" exact component={EnrollmentsList} />
+      <Route path="/enrollments/add" component={EnrollmentsAdd} />
+      <Route path="/enrollments/edit" component={EnrollmentsEdit} />
+
       <Route path="/help-orders" component={HelpOrdersList} />
 
       <Route path="/plans" exact component={PlansList} />

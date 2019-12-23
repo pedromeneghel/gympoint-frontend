@@ -39,7 +39,7 @@ export default createGlobalStyle`
     font-weight: bold;
     margin-bottom: 5px;
   }
-  input, textarea {
+  input, textarea, select {
     border-radius: 4px;
     border: 1px solid #dddddd;
     background: #fff;
@@ -47,7 +47,7 @@ export default createGlobalStyle`
     color: #999;
     padding: 15px;
 
-    &:read-only {
+    &:disabled {
       background: #f5f5f5;
     }
   }
