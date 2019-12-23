@@ -46,6 +46,10 @@ export default createGlobalStyle`
     font-size: 16px;
     color: #999;
     padding: 15px;
+
+    &:read-only {
+      background: #f5f5f5;
+    }
   }
 
   button {

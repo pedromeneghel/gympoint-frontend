@@ -7,10 +7,10 @@ export default function PlansList() {
     <>
       <section className="title">
         <h1>Gerenciando Planos</h1>
-        <button type="button" className="secondary">
+        <Link to="/plans/add" className="secondary">
           <MdAdd size={24} />
           Cadastrar
-        </button>
+        </Link>
       </section>
       <section className="content">
         <table>
@@ -28,7 +28,7 @@ export default function PlansList() {
               <td>1 mês</td>
               <td>R$129,00</td>
               <td>
-                <Link to="/" className="edit">
+                <Link to="/plans/edit" className="edit">
                   editar
                 </Link>
                 <Link to="/" className="delete">
@@ -41,7 +41,7 @@ export default function PlansList() {
               <td>2 meses</td>
               <td>R$109,00</td>
               <td>
-                <Link to="/" className="edit">
+                <Link to="/plans/edit" className="edit">
                   editar
                 </Link>
                 <Link to="/" className="delete">
@@ -54,7 +54,7 @@ export default function PlansList() {
               <td>3 meses</td>
               <td>R$89,00</td>
               <td>
-                <Link to="/" className="edit">
+                <Link to="/plans/edit" className="edit">
                   editar
                 </Link>
                 <Link to="/" className="delete">

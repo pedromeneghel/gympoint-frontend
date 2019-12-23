@@ -5,11 +5,11 @@ import { Form, Input } from '@rocketseat/unform';
 
 import { FormContent } from '~/pages/Plans/styles';
 
-export default function PlansAdd() {
+export default function PlansEdit() {
   return (
     <>
       <section className="title">
-        <h1>Cadastro de plano</h1>
+        <h1>Edição de plano</h1>
         <div className="actionBar">
           <Link to="/plans" className="default">
             <MdKeyboardArrowLeft size={24} />
