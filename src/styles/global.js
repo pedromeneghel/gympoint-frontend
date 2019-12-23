@@ -67,7 +67,7 @@ export default createGlobalStyle`
     }
   }
 
-  button.secondary {
+  button.secondary, a.secondary {
     color: #fff;
     font-weight: bold;
     font-size: 14px;
@@ -89,5 +89,33 @@ export default createGlobalStyle`
     &:hover {
       background: ${darken(0.05, '#EE4D64')}
     }
+  }
+
+  button.default, a.default {
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    background: #ccc;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 4px;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 10px;
+    }
+
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${darken(0.05, '#ccc')}
+    }
+  }
+
+  .margin-left-15{
+    margin-left: 15px;
   }
 `;

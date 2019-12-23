@@ -8,10 +8,10 @@ export default function StudentsList() {
       <section className="title">
         <h1>Gerenciando Alunos</h1>
         <div className="actionBar">
-          <button type="button" className="secondary">
+          <Link to="/students/add" className="secondary">
             <MdAdd size={24} />
             Cadastrar
-          </button>
+          </Link>
           <div className="search">
             <i>
               <MdSearch size={24} />
@@ -40,7 +40,7 @@ export default function StudentsList() {
               <td>1 mês</td>
               <td>R$129,00</td>
               <td>
-                <Link to="/" className="edit">
+                <Link to="/students/edit" className="edit">
                   editar
                 </Link>
                 <Link to="/" className="delete">
@@ -53,7 +53,7 @@ export default function StudentsList() {
               <td>example@intellecti.com.br</td>
               <td>20</td>
               <td>
-                <Link to="/" className="edit">
+                <Link to="/students/edit" className="edit">
                   editar
                 </Link>
                 <Link to="/" className="delete">
@@ -66,7 +66,7 @@ export default function StudentsList() {
               <td>example@intellecti.com.br</td>
               <td>20</td>
               <td>
-                <Link to="/" className="edit">
+                <Link to="/students/edit" className="edit">
                   editar
                 </Link>
                 <Link to="/" className="delete">

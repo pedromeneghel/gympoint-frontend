@@ -169,7 +169,7 @@ export const Container = styled.div`
       line-height: 50px;
       font-size: 80%;
       position: absolute;
-      right: 10px;;
+      right: 10px;
       text-align: center;
       top: 10px;
       width: 70px;
