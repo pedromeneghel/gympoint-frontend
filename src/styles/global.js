@@ -39,7 +39,7 @@ export default createGlobalStyle`
     font-weight: bold;
     margin-bottom: 5px;
   }
-  input {
+  input, textarea {
     border-radius: 4px;
     border: 1px solid #dddddd;
     background: #fff;

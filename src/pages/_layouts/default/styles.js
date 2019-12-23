@@ -113,5 +113,70 @@ export const Container = styled.div`
         }
       }
     }
+
+    .modal-window {
+      position: fixed;
+      background-color: rgba(0, 0, 0, 0.7);
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 999;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+      &:target {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+      }
+      & > div {
+        width: 450px;
+        border-radius: 4px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 2em;
+        background: #ffffff;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        font-weight: bold;
+      }
+      h2 {
+        text-transform: uppercase;
+        font-size: 14px;
+        color: #444;
+        margin-bottom: 10px;
+      }
+      p {
+        color: #666;
+        line-height: 26px;
+        font-size: 16px;
+        margin-bottom: 23px;
+      }
+      textarea {
+        margin-bottom: 21px;
+      }
+    }
+
+    .modal-close {
+      color: #aaa;
+      line-height: 50px;
+      font-size: 80%;
+      position: absolute;
+      right: 10px;;
+      text-align: center;
+      top: 10px;
+      width: 70px;
+      text-decoration: none;
+      &:hover {
+        color: black;
+      }
+    }
   }
 `;
