@@ -32,12 +32,21 @@ export default createGlobalStyle`
     list-style: none;
   }
 
+  form span {
+    color: #DE3B3B;
+    margin: -15px 0 20px;
+  }
+
   label {
     text-transform: uppercase;
     color: #444;
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 5px;
+
+    span {
+      text-transform: none;
+    }
   }
   input, textarea, select {
     border-radius: 4px;
