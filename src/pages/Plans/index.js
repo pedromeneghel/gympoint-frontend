@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
+import { toast } from 'react-toastify';
+
+import api from '~/services/api';
 
 export default function PlansList() {
+  const [plans, setPlans] = useState([]);
+
+  useEffect(() => {
+    async function loadPlans() {
+      try {
+        const response = await api.get(`plans`);
+        setPlans(response.data);
+      } catch {
+        toast.error('Não foi possível carregar a listagem de planos.');
+      }
+    }
+
+    loadPlans();
+  }, []);
   return (
     <>
       <section className="title">
@@ -23,45 +40,29 @@ export default function PlansList() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Start</td>
-              <td>1 mês</td>
-              <td>R$129,00</td>
-              <td>
-                <Link to="/plans/edit" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>Gold</td>
-              <td>2 meses</td>
-              <td>R$109,00</td>
-              <td>
-                <Link to="/plans/edit" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>Diamond</td>
-              <td>3 meses</td>
-              <td>R$89,00</td>
-              <td>
-                <Link to="/plans/edit" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
-              </td>
-            </tr>
+            {plans && plans.length > 0 ? (
+              plans.map(plan => (
+                <tr key={String(plan.id)}>
+                  <td>{plan.title}</td>
+                  <td>
+                    {plan.duration} {plan.duration > 1 ? 'meses' : 'mês'}
+                  </td>
+                  <td>{plan.price}</td>
+                  <td>
+                    <Link to="/plans/edit" className="edit">
+                      editar
+                    </Link>
+                    <Link to="/" className="delete">
+                      apagar
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4">Nenhum plano foi encontrado.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </section>

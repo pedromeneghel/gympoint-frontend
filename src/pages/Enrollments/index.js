@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdAdd, MdCheckCircle } from 'react-icons/md';
+import { toast } from 'react-toastify';
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
+
+import api from '~/services/api';
 
 export default function EnrollmentsList() {
+  const [enrollments, setEnrollments] = useState([]);
+
+  useEffect(() => {
+    async function loadEnrollments() {
+      try {
+        const response = await api.get('enrollments');
+
+        const dados = response.data.map(data => {
+          return {
+            start_date_formated: format(
+              parseISO(data.start_date),
+              "dd' de 'MMMM' de 'yyyy",
+              { locale: pt }
+            ),
+            end_date_formated: format(
+              parseISO(data.end_date),
+              "dd' de 'MMMM' de 'yyyy",
+              { locale: pt }
+            ),
+            ...data,
+          };
+        });
+
+        setEnrollments(dados);
+      } catch {
+        toast.error('Não foi possível carregar a listagem de matrículas.');
+      }
+    }
+
+    loadEnrollments();
+  }, []); //eslint-disable-line
   return (
     <>
       <section className="title">
@@ -25,40 +61,34 @@ export default function EnrollmentsList() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Chan Ji-Hun</td>
-              <td>Start</td>
-              <td>30 de Abril de 2019</td>
-              <td>30 de Maio de 2019</td>
-              <td>
-                <MdCheckCircle size={24} color="#42CB59" />
-              </td>
-              <td>
-                <Link to="/enrollments/edit" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>Chan Ji-Hun</td>
-              <td>Start</td>
-              <td>30 de Abril de 2019</td>
-              <td>30 de Maio de 2019</td>
-              <td>
-                <MdCheckCircle size={24} active="#ddd" />
-              </td>
-              <td>
-                <Link to="/enrollments/edit" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
-              </td>
-            </tr>
+            {enrollments && enrollments.length > 0 ? (
+              enrollments.map(enrollment => (
+                <tr>
+                  <td>{enrollment.student.name}</td>
+                  <td>{enrollment.plan.title}</td>
+                  <td>{enrollment.start_date_formated}</td>
+                  <td>{enrollment.end_date_formated}</td>
+                  <td>
+                    <MdCheckCircle
+                      size={24}
+                      color={enrollment.active ? '#42CB59' : '#ddd'}
+                    />
+                  </td>
+                  <td>
+                    <Link to="/enrollments/edit" className="edit">
+                      editar
+                    </Link>
+                    <Link to="/" className="delete">
+                      apagar
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6">Não encontrada nenhuma mátricula.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </section>

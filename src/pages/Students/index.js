@@ -1,8 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdAdd, MdSearch } from 'react-icons/md';
+import { toast } from 'react-toastify';
+
+import api from '~/services/api';
 
 export default function StudentsList() {
+  const [students, setStudents] = useState([]);
+
+  useEffect(() => {
+    async function loadStudents() {
+      try {
+        const response = await api.get('students');
+        setStudents(response.data);
+      } catch {
+        toast.error('Não foi possível carregar a listagem de alunos.');
+      }
+    }
+
+    loadStudents();
+  }, []); // eslint-disable-line
   return (
     <>
       <section className="title">
@@ -35,84 +52,27 @@ export default function StudentsList() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Start</td>
-              <td>1 mês</td>
-              <td>R$129,00</td>
-              <td>
-                <Link to="/students/edit" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>Cha Ji-Hun</td>
-              <td>example@intellecti.com.br</td>
-              <td>20</td>
-              <td>
-                <Link to="/students/edit" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>Cha Ji-Hun</td>
-              <td>example@intellecti.com.br</td>
-              <td>20</td>
-              <td>
-                <Link to="/students/edit" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>Cha Ji-Hun</td>
-              <td>example@intellecti.com.br</td>
-              <td>20</td>
-              <td>
-                <Link to="/students/edit" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>Cha Ji-Hun</td>
-              <td>example@intellecti.com.br</td>
-              <td>20</td>
-              <td>
-                <Link to="/students/edit" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>Cha Ji-Hun</td>
-              <td>example@intellecti.com.br</td>
-              <td>20</td>
-              <td>
-                <Link to="/students/edit" className="edit">
-                  editar
-                </Link>
-                <Link to="/" className="delete">
-                  apagar
-                </Link>
-              </td>
-            </tr>
+            {students && students.length > 0 ? (
+              students.map(student => (
+                <tr key={String(student.id)}>
+                  <td>{student.name}</td>
+                  <td>{student.email}</td>
+                  <td>{student.age}</td>
+                  <td>
+                    <Link to="/students/edit" className="edit">
+                      editar
+                    </Link>
+                    <Link to="/" className="delete">
+                      apagar
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4">Não foi encontrado nenhum aluno cadastrado.</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </section>

@@ -1,7 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+
+import api from '~/services/api';
 
 export default function HelpOrdersList() {
+  const [helpOrders, setHelpOrders] = useState([]);
+
+  useEffect(() => {
+    async function loadHelpOrders() {
+      try {
+        const response = await api.get('help-orders');
+        setHelpOrders(response.data);
+      } catch {
+        toast.error(
+          'Não foi possível carregar a listagem de pedidos de ajuda.'
+        );
+      }
+    }
+
+    loadHelpOrders();
+  }, []);
+
   return (
     <>
       <section className="title">
@@ -16,30 +35,24 @@ export default function HelpOrdersList() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Chan Ji-Hun</td>
-              <td>
-                <a className="edit" href="#open-modal">
-                  responder
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>Chan Ji-Hun</td>
-              <td>
-                <a className="edit" href="#open-modal">
-                  responder
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>Chan Ji-Hun</td>
-              <td>
-                <a className="edit" href="#open-modal">
-                  responder
-                </a>
-              </td>
-            </tr>
+            {helpOrders && helpOrders.length > 0 ? (
+              helpOrders.map(help => (
+                <tr key={String(help.id)}>
+                  <td>{help.question}</td>
+                  <td>
+                    <a className="edit" href="#open-modal">
+                      responder
+                    </a>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="2">
+                  Não foi encontrado nenhum pedido de ajuda pendente de reposta.
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
         <div id="open-modal" className="modal-window">
