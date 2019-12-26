@@ -48,7 +48,9 @@ export const Profile = styled.div`
   display: flex;
   flex-direction: column;
 
-  a {
+  button {
+    border: none;
+    background: none;
     color: #de3b3b;
     font-size: 14px;
     transition: color 0.2s;
