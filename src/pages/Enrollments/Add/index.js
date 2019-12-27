@@ -2,19 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdCheck, MdKeyboardArrowLeft } from 'react-icons/md';
 import { Form, Input, Select } from '@rocketseat/unform';
-import AsyncSelect from 'react-select/async';
-import DatePicker from 'react-datepicker';
 import * as Yup from 'yup';
+import ReactSelect from '~/components/ReactSelect';
+import DatePicker from '~/components/DatePicker';
 
 import { FormContent } from '~/pages/Enrollments/styles';
 
 import api from '~/services/api';
-
-const options = [
-  { id: 'react', title: 'ReactJS' },
-  { id: 'node', title: 'NodeJS' },
-  { id: 'rn', title: 'React Native' },
-];
 
 const students = async search => {
   const params = {
@@ -24,26 +18,34 @@ const students = async search => {
 
   const data = response.data.map(student => {
     return {
-      value: student.id,
-      label: student.name,
+      id: student.id,
+      title: student.name,
     };
   });
 
   return data;
 };
 
+const options = [
+  { id: 'react', title: 'ReactJS' },
+  { id: 'node', title: 'NodeJS' },
+  { id: 'rn', title: 'React Native' },
+];
+
 export default function EnrollmentsAdd() {
-  const [startDate, setStartDate] = useState('');
-  /* const schema = Yup.object().shape({
-    student_id: Yup.string().required('Selecione um aluno'),
-  }); */
+  const schema = Yup.object().shape({
+    student_id: Yup.number()
+      .integer()
+      .required('Selecione um aluno')
+      .typeError('Selecione um aluno.'),
+  });
 
   function handleSubmit(data) {
     console.log(data);
   }
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form schema={schema} onSubmit={handleSubmit}>
         <section className="title">
           <h1>Cadastro de matrícula</h1>
           <div className="actionBar">
@@ -60,13 +62,13 @@ export default function EnrollmentsAdd() {
         <section className="content">
           <FormContent>
             <label htmlFor="student_id">Aluno</label>
-
-            <AsyncSelect
-              cacheOptions
-              defaultOptions
-              loadOptions={students}
+            <ReactSelect
+              name="student_id"
+              id="student_id"
+              options={students}
               placeholder="Selecione um aluno"
             />
+
             <div className="columns">
               <div>
                 <label htmlFor="plan_id">Plano</label>
@@ -74,13 +76,7 @@ export default function EnrollmentsAdd() {
               </div>
               <div>
                 <label htmlFor="start_date">Data de Início</label>
-                <DatePicker
-                  id="start_date"
-                  name="start_date"
-                  selected={startDate}
-                  onChange={date => setStartDate(date)}
-                  dateFormat="dd/MM/yyyy"
-                />
+                <DatePicker name="start_date" />
               </div>
               <div>
                 <label htmlFor="end_date">Data de Término</label>

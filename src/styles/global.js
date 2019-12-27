@@ -32,9 +32,10 @@ export default createGlobalStyle`
     list-style: none;
   }
 
-  form span {
+  form span, span.error {
     color: #DE3B3B;
     margin: -15px 0 20px;
+    display: block !important;
   }
 
   label {
