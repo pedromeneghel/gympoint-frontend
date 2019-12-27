@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { MdCheck, MdKeyboardArrowLeft } from 'react-icons/md';
 import { Form, Input } from '@rocketseat/unform';
 import * as Yup from 'yup';
 
+import { studentAddRequest } from '~/store/modules/students/actions';
 import { FormContent } from '~/pages/Students/styles';
 
 export default function StudentsAdd() {
+  const dispatch = useDispatch();
+  const loading = useSelector(state => state.auth.loading);
   const schema = Yup.object().shape({
     name: Yup.string()
       .min(3, 'Informe o nome completo do aluno')
@@ -29,8 +33,8 @@ export default function StudentsAdd() {
       .typeError('Informe a altura do aluno'),
   });
 
-  function handleSubmit({ name, email, age, wieght, height }) {
-    alert();
+  function handleSubmit(data) {
+    dispatch(studentAddRequest(data));
   }
   return (
     <>
@@ -44,7 +48,7 @@ export default function StudentsAdd() {
             </Link>
             <button type="submit" className="secondary margin-left-15">
               <MdCheck size={24} />
-              Salvar
+              {loading ? 'Salvando...' : 'Salvar'}
             </button>
           </div>
         </section>

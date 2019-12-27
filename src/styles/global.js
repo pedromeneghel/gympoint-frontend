@@ -48,6 +48,7 @@ export default createGlobalStyle`
       text-transform: none;
     }
   }
+  
   input, textarea, select {
     border-radius: 4px;
     border: 1px solid #dddddd;

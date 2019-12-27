@@ -7,6 +7,19 @@ import api from '~/services/api';
 
 export default function StudentsList() {
   const [students, setStudents] = useState([]);
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    async function loadStudentsSearch() {
+      const params = {
+        q: search,
+      };
+      const response = await api.get('students', { params });
+      setStudents(response.data);
+    }
+
+    loadStudentsSearch();
+  }, [search]);
 
   useEffect(() => {
     async function loadStudents() {
@@ -37,6 +50,8 @@ export default function StudentsList() {
               type="text"
               name="searchStudent"
               placeholder="Buscar aluno"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
             />
           </div>
         </div>

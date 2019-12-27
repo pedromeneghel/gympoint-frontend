@@ -9,7 +9,7 @@ import logo from '~/assets/images/logo.svg';
 
 export default function Header() {
   const dispatch = useDispatch();
-  // const profile = useSelector(state => state.user.profile);
+  const nomeUser = useSelector(state => state.auth.user.name);
 
   function handleClick() {
     dispatch(signOut());
@@ -28,7 +28,7 @@ export default function Header() {
         </nav>
         <aside>
           <Profile>
-            <strong>Pedro Meneghel</strong>
+            <strong>{nomeUser}</strong>
             <button type="button" onClick={() => handleClick()}>
               sair do sistema
             </button>

@@ -8,14 +8,16 @@ const api = axios.create({
 });
 
 const tmp = JSON.parse(localStorage.getItem('persist:gympoint'));
-const { token } = JSON.parse(tmp.auth);
-if (token) {
-  if (token.length > 0) {
-    api.interceptors.request.use(conf => {
-      conf.headers.Authorization = `Bearer ${token}`;
+if (tmp) {
+  const { token } = JSON.parse(tmp.auth);
+  if (token) {
+    if (token.length > 0) {
+      api.interceptors.request.use(conf => {
+        conf.headers.Authorization = `Bearer ${token}`;
 
-      return conf;
-    });
+        return conf;
+      });
+    }
   }
 }
 
