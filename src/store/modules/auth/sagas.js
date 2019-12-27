@@ -21,7 +21,7 @@ export function* signIn({ payload }) {
     yield put(signInSuccess(token, user));
     history.push('/Plans');
   } catch (err) {
-    toast.error('Falha na autenticação. Usuário ou senha inválidos.');
+    toast.error('Falha na autenticação. E-mail ou senha inválidos.');
     yield put(signFailure());
   }
 }

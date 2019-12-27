@@ -86,7 +86,7 @@ export default function EnrollmentsList() {
               ))
             ) : (
               <tr>
-                <td colSpan="6">Não encontrada nenhuma mátricula.</td>
+                <td colSpan={6}>Não encontrada nenhuma mátricula.</td>
               </tr>
             )}
           </tbody>
