@@ -20,7 +20,7 @@ export default function RouterWrapper({
   }
 
   if (signed && !isPrivate) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/plans" />;
   }
 
   const Layout = signed ? DefaultLayout : AuthLayout;

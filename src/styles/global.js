@@ -63,6 +63,10 @@ export default createGlobalStyle`
     }
   }
 
+  input[type=date] {
+    padding: 12.5px;
+  }
+
   button {
     cursor: pointer;
   }
