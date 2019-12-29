@@ -17,3 +17,22 @@ export function planAddFailure() {
     type: '@plan/PLAN_ADD_FAILURE',
   };
 }
+export function planEditRequest(data) {
+  return {
+    type: '@plan/PLAN_EDIT_REQUEST',
+    payload: { data },
+  };
+}
+
+export function planEditSuccess(data) {
+  return {
+    type: '@plan/PLAN_EDIT_SUCCESS',
+    payload: { data },
+  };
+}
+
+export function planEditFailure() {
+  return {
+    type: '@plan/PLAN_EDIT_FAILURE',
+  };
+}

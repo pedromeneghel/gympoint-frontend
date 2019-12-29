@@ -19,6 +19,18 @@ export default function plan(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case '@plan/PLAN_EDIT_REQUEST': {
+        draft.loading = true;
+        break;
+      }
+      case '@plan/PLAN_EDIT_SUCCESS': {
+        draft.loading = false;
+        break;
+      }
+      case '@plan/PLAN_EDIT_FAILURE': {
+        draft.loading = false;
+        break;
+      }
       default:
         return state;
     }

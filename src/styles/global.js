@@ -32,7 +32,7 @@ export default createGlobalStyle`
     list-style: none;
   }
 
-  form span, span.error {
+  form > span, span.error {
     color: #DE3B3B;
     margin: -15px 0 20px;
     display: block !important;
@@ -45,7 +45,7 @@ export default createGlobalStyle`
     font-weight: bold;
     margin-bottom: 5px;
 
-    span {
+    > span {
       text-transform: none;
     }
   }

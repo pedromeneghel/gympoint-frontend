@@ -5,6 +5,11 @@ import { toast } from 'react-toastify';
 
 import api from '~/services/api';
 
+const formatPrice = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+});
+
 export default function PlansList() {
   const [plans, setPlans] = useState([]);
 
@@ -47,9 +52,9 @@ export default function PlansList() {
                   <td>
                     {plan.duration} {plan.duration > 1 ? 'meses' : 'mês'}
                   </td>
-                  <td>{plan.price}</td>
+                  <td>{formatPrice.format(plan.price)}</td>
                   <td>
-                    <Link to="/plans/edit" className="edit">
+                    <Link to={`/plans/edit/${plan.id}`} className="edit">
                       editar
                     </Link>
                     <Link to="/" className="delete">
