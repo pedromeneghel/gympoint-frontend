@@ -17,7 +17,7 @@ export default function StudentsAdd() {
       .required('Informe o nome completo do aluno'),
     email: Yup.string()
       .email('Informe um endereço de e-mail válido')
-      .required('Inform o endereço de e-mail do aluno'),
+      .required('Informe o endereço de e-mail do aluno'),
     age: Yup.number()
       .integer()
       .min(1, 'Informe a idade do aluno')

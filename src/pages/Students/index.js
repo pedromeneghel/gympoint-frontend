@@ -74,7 +74,7 @@ export default function StudentsList() {
                   <td>{student.email}</td>
                   <td>{student.age}</td>
                   <td>
-                    <Link to="/students/edit" className="edit">
+                    <Link to={`/students/edit/${student.id}`} className="edit">
                       editar
                     </Link>
                     <Link to="/" className="delete">

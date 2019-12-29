@@ -19,6 +19,18 @@ export default function student(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case '@student/STUDENT_EDIT_REQUEST': {
+        draft.loading = true;
+        break;
+      }
+      case '@student/STUDENT_EDIT_SUCCESS': {
+        draft.loading = false;
+        break;
+      }
+      case '@student/STUDENT_EDIT_FAILURE': {
+        draft.loading = false;
+        break;
+      }
       default:
         return state;
     }
