@@ -32,13 +32,19 @@ export default createGlobalStyle`
     list-style: none;
   }
 
-  form > span, span.error {
+  form span {
     color: #DE3B3B;
     margin: -15px 0 20px;
-    display: block !important;
+    display: block;
   }
 
-  label {
+  form span.error {
+    color: #DE3B3B;
+    margin: 10px 0 0;
+    display: block;
+  }
+
+  form label {
     text-transform: uppercase;
     color: #444;
     font-size: 14px;

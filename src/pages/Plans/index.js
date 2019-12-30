@@ -38,6 +38,7 @@ export default function PlansList() {
       }
     }
   }
+
   return (
     <>
       <section className="title">
@@ -71,6 +72,7 @@ export default function PlansList() {
                       editar
                     </Link>
                     <Link
+                      to
                       className="delete"
                       onClick={() => handleDelete(plan.id)}
                     >

@@ -33,6 +33,20 @@ export default function StudentsList() {
 
     loadStudents();
   }, []); // eslint-disable-line
+
+  async function handleDelete(id) {
+    if (window.confirm('Você confirma a exlusão deste aluno?')) {
+      try {
+        await api.delete(`students/${id}`);
+
+        toast.success('Aluno excluído com sucesso.');
+        setStudents(students.filter(student => student.id !== id));
+      } catch {
+        toast.error('Ops, algo deu errado? Não foi possível excluír o aluno.');
+      }
+    }
+  }
+
   return (
     <>
       <section className="title">
@@ -77,7 +91,11 @@ export default function StudentsList() {
                     <Link to={`/students/edit/${student.id}`} className="edit">
                       editar
                     </Link>
-                    <Link to="/" className="delete">
+                    <Link
+                      to
+                      className="delete"
+                      onClick={() => handleDelete(student.id)}
+                    >
                       apagar
                     </Link>
                   </td>

@@ -23,6 +23,10 @@ export const FormContent = styled.div`
   input,
   select {
     width: 100%;
-    margin-bottom: 20px;
+  }
+  span {
+    color: #de3b3b;
+    margin: 10px 0 0 !important;
+    display: block;
   }
 `;
