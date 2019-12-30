@@ -54,6 +54,7 @@ export default function EnrollmentsList() {
       }
     }
   }
+
   return (
     <>
       <section className="title">

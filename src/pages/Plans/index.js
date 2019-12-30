@@ -25,6 +25,19 @@ export default function PlansList() {
 
     loadPlans();
   }, []);
+
+  async function handleDelete(id) {
+    if (window.confirm('Você confirma a exlusão deste plano?')) {
+      try {
+        await api.delete(`plans/${id}`);
+
+        toast.success('Plano excluído com sucesso.');
+        setPlans(plans.filter(plan => plan.id !== id));
+      } catch {
+        toast.error('Ops, algo deu errado? Não foi possível excluír o plano.');
+      }
+    }
+  }
   return (
     <>
       <section className="title">
@@ -57,7 +70,10 @@ export default function PlansList() {
                     <Link to={`/plans/edit/${plan.id}`} className="edit">
                       editar
                     </Link>
-                    <Link to="/" className="delete">
+                    <Link
+                      className="delete"
+                      onClick={() => handleDelete(plan.id)}
+                    >
                       apagar
                     </Link>
                   </td>
