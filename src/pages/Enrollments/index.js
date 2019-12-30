@@ -75,7 +75,10 @@ export default function EnrollmentsList() {
                     />
                   </td>
                   <td>
-                    <Link to="/enrollments/edit" className="edit">
+                    <Link
+                      to={`/enrollments/edit/${enrollment.id}`}
+                      className="edit"
+                    >
                       editar
                     </Link>
                     <Link to="/" className="delete">

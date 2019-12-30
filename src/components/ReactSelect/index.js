@@ -34,13 +34,15 @@ export default function ReactSelect({
 
   return (
     <>
+      {label && <label htmlFor={fieldName}>{label}</label>}
+
       <Select
         cacheOptions
         defaultOptions
         name={fieldName}
         loadOptions={options}
         isMulti={multiple}
-        defaultValue={getDefaultValue()}
+        defaultValue={selected}
         ref={ref}
         onChange={option => setSelected(option.id)}
         selected={selected}
