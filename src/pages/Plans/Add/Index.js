@@ -58,14 +58,11 @@ export default function PlansAdd() {
         </section>
         <section className="content">
           <FormContent>
-            <label htmlFor="title">Nome do Plano</label>
-            <Input id="title" name="title" />
+            <Input label="Nome do Plano" id="title" name="title" />
             <div>
               <div>
-                <label htmlFor="duration">
-                  Duração <span>(em meses)</span>
-                </label>
                 <Input
+                  label="Duração (em meses)"
                   type="text"
                   id="duration"
                   name="duration"
@@ -74,8 +71,8 @@ export default function PlansAdd() {
                 />
               </div>
               <div>
-                <label htmlFor="price">Preço Mensal</label>
                 <Input
+                  label="Preço Mensal"
                   type="number"
                   id="price"
                   name="price"
@@ -84,8 +81,8 @@ export default function PlansAdd() {
                 />
               </div>
               <div>
-                <label htmlFor="totalPrice">Preço Total</label>
                 <Input
+                  label="Preço Total"
                   type="text"
                   id="totalPrice"
                   name="totalPrice"

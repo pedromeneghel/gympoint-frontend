@@ -17,3 +17,23 @@ export function enrollmentAddFailure() {
     type: '@enrollment/ENROLLMENT_ADD_FAILURE',
   };
 }
+
+export function enrollmentEditRequest(data) {
+  return {
+    type: '@enrollment/ENROLLMENT_EDIT_REQUEST',
+    payload: { data },
+  };
+}
+
+export function enrollmentEditSuccess(data) {
+  return {
+    type: '@enrollment/ENROLLMENT_EDIT_SUCCESS',
+    payload: { data },
+  };
+}
+
+export function enrollmentEditFailure() {
+  return {
+    type: '@enrollment/ENROLLMENT_EDIT_FAILURE',
+  };
+}

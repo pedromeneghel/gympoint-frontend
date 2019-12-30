@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import ReactSelect from '~/components/ReactSelect';
 
 import api from '~/services/api';
+import { enrollmentEditRequest } from '~/store/modules/enrollments/actions';
 import { FormContent } from '~/pages/Enrollments/styles';
 
 const formatPrice = new Intl.NumberFormat('pt-BR', {
@@ -22,16 +23,16 @@ export default function EnrollmentsEdit() {
   const [dataPlan, setDataPlan] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [price, setPrice] = useState('');
-  // const dispatch = useDispatch();
+  const [totalPrice, setTotalPrice] = useState('');
+  const dispatch = useDispatch();
 
   const schema = Yup.object().shape({
-    student_id: Yup.number()
+    studentId: Yup.number()
       .integer()
       .required('Selecione um aluno')
       .typeError('Selecione um aluno.'),
-    plan_id: Yup.string().required('Selecione um plano'),
-    start_date: Yup.date()
+    planId: Yup.string().required('Selecione um plano'),
+    startDate: Yup.date()
       .required('Informe a data de início')
       .typeError('Informe uma data válida.'),
   });
@@ -60,14 +61,17 @@ export default function EnrollmentsEdit() {
 
       const data = {
         id: dataTemp.id,
-        start_date: format(parseISO(dataTemp.start_date), 'dd/MM/yyyy'),
-        end_date: format(parseISO(dataTemp.end_date), 'dd/MM/yyyy'),
-        total_price: formatPrice.format(dataTemp.price),
-        student_id: dataTemp.student.id,
-        plan_id: `${dataTemp.plan.id}|${dataTemp.plan.duration}|${dataTemp.plan.price}`,
+        startDate: format(parseISO(dataTemp.start_date), 'yyyy-MM-dd'),
+        endDate: format(parseISO(dataTemp.end_date), 'dd/MM/yyyy'),
+        totalPrice: formatPrice.format(dataTemp.price),
+        studentId: dataTemp.student.id,
+        planId: `${dataTemp.plan.id}|${dataTemp.plan.duration}|${dataTemp.plan.price}`,
       };
 
       setEnrollmentData(data);
+      setStartDate(data.startDate);
+      setEndDate(data.endDate);
+      setTotalPrice(data.totalPrice);
     }
 
     loadEnrollmentData();
@@ -84,10 +88,12 @@ export default function EnrollmentsEdit() {
       }
 
       // Fomatando preço
-      setPrice(formatPrice.format(Number(infoPlan[1] * Number(infoPlan[2]))));
+      setTotalPrice(
+        formatPrice.format(Number(infoPlan[1] * Number(infoPlan[2])))
+      );
     } else {
       setEndDate('');
-      setPrice('');
+      setTotalPrice('');
     }
   }, [dataPlan, startDate]);
 
@@ -107,7 +113,9 @@ export default function EnrollmentsEdit() {
     return data;
   }
 
-  function handleSubmit(data) {}
+  function handleSubmit(data) {
+    dispatch(enrollmentEditRequest({ ...data, idEnrollment }));
+  }
 
   return (
     <>
@@ -132,35 +140,36 @@ export default function EnrollmentsEdit() {
         <section className="content">
           <FormContent>
             <ReactSelect
-              name="student_id"
+              name="studentId"
               options={students}
               placeholder="Selecione um aluno"
-              defaultValue={enrollmentData.student_id}
+              defaultValue={enrollmentData.studentId}
               label="Aluno"
             />
             <div className="columns">
               <div>
                 <Select
                   label="Plano"
-                  name="plan_id"
+                  name="planId"
                   options={plans}
-                  value={enrollmentData.plan_id}
+                  value={enrollmentData.planId}
+                  onChange={e => setDataPlan(e.target.value)}
                 />
               </div>
               <div>
                 <Input
                   label="Data de Início"
-                  type="text"
-                  id="start_date"
-                  name="start_date"
+                  type="date"
+                  name="startDate"
+                  onChange={date => setStartDate(date.target.value)}
                 />
               </div>
               <div>
                 <Input
                   label="Data de Término"
-                  id="end_date"
                   type="text"
-                  name="end_date"
+                  name="endDate"
+                  value={endDate}
                   disabled
                 />
               </div>
@@ -168,8 +177,8 @@ export default function EnrollmentsEdit() {
                 <Input
                   label="Valor Final"
                   type="text"
-                  id="total_price"
-                  name="total_price"
+                  name="totalPrice"
+                  value={totalPrice}
                   disabled
                 />
               </div>

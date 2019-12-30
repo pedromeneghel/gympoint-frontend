@@ -17,22 +17,6 @@ const formatPrice = new Intl.NumberFormat('pt-BR', {
   currency: 'BRL',
 });
 
-const students = async search => {
-  const params = {
-    q: search,
-  };
-  const response = await api.get('students', { params });
-
-  const data = response.data.map(student => {
-    return {
-      id: student.id,
-      title: student.name,
-    };
-  });
-
-  return data;
-};
-
 export default function EnrollmentsAdd() {
   const [plans, setPlans] = useState([]);
   const [dataPlan, setDataPlan] = useState('');
@@ -42,12 +26,12 @@ export default function EnrollmentsAdd() {
   const dispatch = useDispatch();
 
   const schema = Yup.object().shape({
-    student_id: Yup.number()
+    studentId: Yup.number()
       .integer()
       .required('Selecione um aluno')
       .typeError('Selecione um aluno.'),
-    plan_id: Yup.string().required('Selecione um plano'),
-    start_date: Yup.date()
+    planId: Yup.string().required('Selecione um plano'),
+    startDate: Yup.date()
       .required('Informe a data de início')
       .typeError('Informe uma data válida.'),
   });
@@ -87,6 +71,22 @@ export default function EnrollmentsAdd() {
     }
   }, [dataPlan, startDate]);
 
+  async function students(search) {
+    const params = {
+      q: search,
+    };
+    const response = await api.get('students', { params });
+
+    const data = response.data.map(student => {
+      return {
+        id: student.id,
+        title: student.name,
+      };
+    });
+
+    return data;
+  }
+
   function handleSubmit(data) {
     dispatch(enrollmentAddRequest(data));
   }
@@ -109,47 +109,44 @@ export default function EnrollmentsAdd() {
         </section>
         <section className="content">
           <FormContent>
-            <label htmlFor="student_id">Aluno</label>
             <ReactSelect
-              name="student_id"
-              id="student_id"
+              label="Aluno"
+              name="studentId"
               options={students}
               placeholder="Selecione um aluno"
             />
 
             <div className="columns">
               <div>
-                <label htmlFor="plan_id">Plano</label>
                 <Select
-                  name="plan_id"
+                  label="Plano"
+                  name="planId"
                   options={plans}
                   onChange={e => setDataPlan(e.target.value)}
                 />
               </div>
               <div>
-                <label htmlFor="start_date">Data de Início</label>
                 <Input
+                  label="Data de Início"
                   type="date"
-                  name="start_date"
+                  name="startDate"
                   onChange={date => setStartDate(date.target.value)}
                 />
               </div>
               <div>
-                <label htmlFor="end_date">Data de Término</label>
                 <Input
-                  id="end_date"
+                  label="Data de Término"
                   type="text"
-                  name="end_date"
+                  name="endDate"
                   value={endDate}
                   disabled
                 />
               </div>
               <div>
-                <label htmlFor="total_price">Valor Final</label>
                 <Input
+                  label="Valor Final"
                   type="text"
-                  id="total_price"
-                  name="total_price"
+                  name="totalPrice"
                   value={price}
                   disabled
                 />

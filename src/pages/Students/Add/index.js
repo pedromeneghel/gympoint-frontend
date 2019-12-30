@@ -54,18 +54,20 @@ export default function StudentsAdd() {
         </section>
         <section className="content">
           <FormContent>
-            <label htmlFor="name">Nome completo</label>
-            <Input id="name" name="name" />
-            <label htmlFor="email">Endereço de E-mail</label>
-            <Input type="email" id="email" name="email" />
+            <Input label="Nome completo" id="name" name="name" />
+            <Input
+              label="Endereço de E-mail"
+              type="email"
+              id="email"
+              name="email"
+            />
             <div>
               <div>
-                <label htmlFor="age">Idade</label>
-                <Input type="number" id="age" name="age" />
+                <Input label="Idade" type="number" id="age" name="age" />
               </div>
               <div>
-                <label htmlFor="weight">Peso</label>
                 <Input
+                  label="Peso"
                   type="number"
                   id="weight"
                   name="weight"
@@ -74,8 +76,8 @@ export default function StudentsAdd() {
                 />
               </div>
               <div>
-                <label htmlFor="height">Altura</label>
                 <Input
+                  label="Altura"
                   type="number"
                   id="height"
                   name="height"

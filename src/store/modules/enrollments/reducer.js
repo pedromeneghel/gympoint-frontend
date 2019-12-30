@@ -19,6 +19,18 @@ export default function enrollment(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case '@enrollment/ENROLLMENT_EDIT_REQUEST': {
+        draft.loading = true;
+        break;
+      }
+      case '@enrollment/ENROLLMENT_EDIT_SUCCESS': {
+        draft.loading = false;
+        break;
+      }
+      case '@enrollment/ENROLLMENT_EDIT_FAILURE': {
+        draft.loading = false;
+        break;
+      }
       default:
         return state;
     }
