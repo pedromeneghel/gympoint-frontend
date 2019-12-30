@@ -39,6 +39,21 @@ export default function EnrollmentsList() {
 
     loadEnrollments();
   }, []); //eslint-disable-line
+
+  async function handleDelete(id) {
+    if (window.confirm('Você confirma a exlusão da matrícula?')) {
+      try {
+        await api.delete(`enrollments/${id}`);
+
+        toast.success('Matrícula excluída com sucesso.');
+        setEnrollments(enrollments.filter(enrollment => enrollment.id !== id));
+      } catch {
+        toast.error(
+          'Ops, algo deu errado? Não foi possível excluír a matrícula.'
+        );
+      }
+    }
+  }
   return (
     <>
       <section className="title">
@@ -81,7 +96,11 @@ export default function EnrollmentsList() {
                     >
                       editar
                     </Link>
-                    <Link to="/" className="delete">
+                    <Link
+                      to
+                      className="delete"
+                      onClick={() => handleDelete(enrollment.id)}
+                    >
                       apagar
                     </Link>
                   </td>
